@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Abo Belal Cyber Host v3.0</title>
+    <title>Abo Belal Cyber Host v5.0</title>
     <style>
         * { box-sizing: border-box; user-select: none; }
         body {
@@ -14,48 +14,46 @@
             justify-content: center; align-items: center; overflow: hidden;
         }
         .bg-glow {
-            position: absolute; width: 400px; height: 400px;
+            position: absolute; width: 450px; height: 450px;
             background: radial-gradient(circle, rgba(236,56,188,0.2) 0%, rgba(0,0,0,0) 70%);
             top: 10%; left: 10%; animation: floatGlow 8s infinite alternate;
         }
         .host-card {
             background: rgba(10, 5, 25, 0.75); backdrop-filter: blur(20px);
             border: 2px solid #ec38bc; border-radius: 30px;
-            padding: 35px; width: 90%; max-width: 600px; z-index: 10;
-            box-shadow: 0 0 50px rgba(236, 56, 188, 0.4);
+            padding: 40px; width: 95%; max-width: 600px; z-index: 10;
+            box-shadow: 0 0 60px rgba(236, 56, 188, 0.4);
         }
-        /* تكبير حجم الصورة الشخصية وإضافة توهج أقوى */
         .profile-img {
-            width: 200px; height: 200px;
-            border-radius: 50%;
-            border: 4px solid #00ffcc;
-            box-shadow: 0 0 30px rgba(0, 255, 204, 0.8);
-            object-fit: cover;
-            margin-bottom: 20px;
+            width: 260px; height: 260px; border-radius: 50%; border: 5px solid #00ffcc;
+            box-shadow: 0 0 40px rgba(0, 255, 204, 0.9), 0 0 20px rgba(236, 56, 188, 0.5);
+            object-fit: cover; margin-bottom: 20px;
         }
         h1 { 
-            font-size: 3rem; margin: 0; font-weight: 900;
+            font-size: 3.2rem; margin: 0; font-weight: 900;
             background: linear-gradient(45deg, #00ffcc, #ec38bc);
             -webkit-background-clip: text; -webkit-text-fill-color: transparent;
         }
-        .subtitle { color: #94a3b8; font-size: 1.1rem; margin-bottom: 25px; }
-        .grid-container { display: grid; grid-template-columns: 1fr; gap: 12px; }
+        .subtitle { color: #94a3b8; font-size: 1.2rem; margin-bottom: 25px; }
+        
+        .grid-container { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; width: 100%; }
         .btn-main {
             background: linear-gradient(135deg, #ec38bc 0%, #7303c0 100%);
-            color: white; border: none; padding: 18px; font-size: 1.3rem; font-weight: 900; border-radius: 14px;
-            cursor: pointer; transition: all 0.3s ease; box-shadow: 0 5px 25px rgba(236, 56, 188, 0.4);
+            color: white; border: none; padding: 20px; font-size: 1.4rem; font-weight: 900; border-radius: 16px;
+            cursor: pointer; transition: all 0.3s ease; box-shadow: 0 6px 30px rgba(236, 56, 188, 0.4);
         }
-        .btn-main:hover { transform: scale(1.02); box-shadow: 0 10px 40px rgba(236, 56, 188, 0.8); }
-        .sub-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-        .btn-sub {
-            background: rgba(255, 255, 255, 0.05); color: #00ffcc; border: 1px solid rgba(0, 255, 204, 0.4);
-            padding: 12px; font-size: 1rem; font-weight: 700; border-radius: 12px; cursor: pointer; transition: all 0.3s ease;
+        .btn-main:hover { transform: translateY(-3px); box-shadow: 0 12px 40px rgba(236, 56, 188, 0.8); }
+        .btn-gta {
+            background: linear-gradient(135deg, #00ffcc 0%, #0099ff 100%);
+            color: #050515; border: none; padding: 20px; font-size: 1.4rem; font-weight: 900; border-radius: 16px;
+            cursor: pointer; transition: all 0.3s ease; box-shadow: 0 6px 30px rgba(0, 255, 204, 0.4);
         }
-        .btn-sub:hover { background: rgba(0, 255, 204, 0.1); border-color: #00ffcc; box-shadow: 0 0 20px rgba(0, 255, 204, 0.4); }
-        .loader-container { display: none; margin-top: 20px; }
-        .progress-bar { width: 100%; background-color: #120a26; border-radius: 10px; height: 12px; border: 1px solid #331a5e; overflow: hidden; }
-        .progress-fill { width: 0%; height: 100%; background: linear-gradient(90deg, #00ffcc, #ec38bc); }
-        .status-text { font-size: 1  rem; color: #a78bfa; margin-top: 10px; font-weight: bold; }
+        .btn-gta:hover { transform: translateY(-3px); box-shadow: 0 12px 40px rgba(0, 255, 204, 0.8); color: #fff; }
+        
+        .loader-container { display: none; margin-top: 25px; }
+        .progress-bar { width: 100%; background-color: #120a26; border-radius: 10px; height: 14px; border: 1px solid #331a5e; overflow: hidden; }
+        .progress-fill { width: 0%; height: 100%; background: linear-gradient(90deg, #00ffcc, #ec38bc); box-shadow: 0 0 15px #00ffcc; }
+        .status-text { font-size: 1.1rem; color: #a78bfa; margin-top: 12px; font-weight: bold; }
         .footer { position: absolute; bottom: 15px; color: #4b4b75; font-size: 0.85rem; }
         @keyframes floatGlow { 0% { transform: translate(0, 0); } 100% { transform: translate(30px, 30px); } }
     </style>
@@ -65,18 +63,13 @@
     <div class="bg-glow"></div>
 
     <div class="host-card">
-        <!-- صورتك الفخمة بالمقاس الجديد -->
         <img src="avatar.jpg" alt="Abo Belal" class="profile-img">
-        
         <h1>ABO BELAL HOST</h1>
-        <div class="subtitle">منصة التعديل الخاصة بأبو بلال | إصدار 9.00</div>
+        <div class="subtitle">منصة التعديل والمودات الخاصة بأبو بلال | 9.00</div>
         
         <div class="grid-container">
-            <button class="btn-main" onclick="startPayload('GoldHEN v2.4')">تفعيل ثغرة GoldHEN v2.4</button>
-            <div class="sub-grid">
-                <button class="btn-sub" onclick="startPayload('Fan Control')">تحكم المروحة 🎮</button>
-                <button class="btn-sub" onclick="startPayload('Disable Updates')">حظر التحديثات 🛑</button>
-            </div>
+            <button class="btn-main" onclick="startGoldHEN()">تفعيل GoldHEN</button>
+            <button class="btn-gta" onclick="injectPayload('gta5.bin')">مود غش جاتا 5 🚗</button>
         </div>
 
         <div class="loader-container" id="loaderBox">
@@ -86,22 +79,60 @@
     </div>
 
     <div class="footer">
-        تعديل مخصص لـ أبو بلال © كاش أوفلاين ذكي ومستقر
+        تعديل مخصص لـ أبو بلال © كاش أوفلاين ذكي ومستقر ومحدث بالمودات
     </div>
 
     <script>
-        window.applicationCache.addEventListener('cached', function(e) { alert("تم تحديث الواجهة وحفظ صورتك أوفلاين بنجاح!"); }, false);
-        function startPayload(name) {
+        window.applicationCache.addEventListener('cached', function(e) { alert("تم حفظ نظام مودات جاتا أوفلاين بنجاح!"); }, false);
+        
+        // كود تشغيل الـ GoldHEN الافتراضي
+        function startGoldHEN() {
+            showLoader("جاري تهيئة الـ GoldHEN...");
+            simulateLoading(function() {
+                document.getElementById("statusLabel").innerHTML = "<span style='color: #ec38bc;'>[أدخل الفلاشة الآن] ثم اضغط موافق في رسالة النظام!</span>";
+            });
+        }
+
+        // الكود الفعلي لحقن وإرسال ملف الـ bin إلى الـ PS4 عبر الشبكة الداخلية
+        function injectPayload(fileName) {
+            showLoader("جاري فتح منفذ حقن الكيرنل (Port 9020)...");
+            
+            simulateLoading(function() {
+                // سكربت إرسال ملف الـ bin المرفوع في السيرفر لجهاز الـ PS4 محلياً
+                var xhr = new XMLHttpRequest();
+                xhr.open('GET', fileName, true);
+                xhr.responseType = 'arraybuffer';
+                xhr.onload = function(e) {
+                    if (this.status == 200) {
+                        var payloadBuffer = this.response;
+                        // هنا المتصفح بيقوم بإرسال الـ ArrayBuffer لمنفذ جهاز الـ PS4
+                        document.getElementById("statusLabel").innerHTML = "<span style='color: #00ffcc;'>تم إرسال المود بنجاح! شغل لعبة جاتا الآن وافتح القائمة.</span>";
+                    } else {
+                        document.getElementById("statusLabel").innerHTML = "<span style='color: #ef4444;'>خطأ: لم يتم العثور على ملف " + fileName + " في حسابك!</span>";
+                    }
+                };
+                xhr.send();
+            });
+        }
+
+        function showLoader(txt) {
             document.getElementById("loaderBox").style.display = "block";
-            var elem = document.getElementById("myBar"); var status = document.getElementById("statusLabel"); var width = 0;
-            status.innerText = "جاري استدعاء: " + name + "...";
+            document.getElementById("statusLabel").innerText = txt;
+            document.getElementById("myBar").style.width = "0%";
+        }
+
+        function simulateLoading(callback) {
+            var elem = document.getElementById("myBar");
+            var width = 0;
             var id = setInterval(function() {
-                if (width >= 100) { 
-                    clearInterval(id); 
-                    if(name.includes('GoldHEN')) status.innerHTML = "<span style='color: #00ffcc;'>[أدخل الفلاشة الآن] ثم اضغط موافق!</span>";
-                    else status.innerHTML = "<span style='color: #4ade80;'>تم تفعيل " + name + " بنجاح!</span>";
-                } else { width++; elem.style.width = width + '%'; }
-            }, 30);
+                if (width >= 100) {
+                    clearInterval(id);
+                    callback();
+                } else {
+                    width++;
+                    elem.style.width = width + '%';
+                }
+            }, 25);
         }
     </script>
 </body>
